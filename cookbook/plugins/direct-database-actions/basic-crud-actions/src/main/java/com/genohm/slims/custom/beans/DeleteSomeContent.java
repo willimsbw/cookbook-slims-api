@@ -65,8 +65,7 @@ public class DeleteSomeContent {
 	 */
 	@Transactional
 	@Handler
-	public Map<String, Object> deleteSomeContent(@Header(SlimsGateKeeperConstants.SLIMS_PROXY) SlimsProxy slimsProxy,
-	                                          @Header(SlimsGateKeeperConstants.SLIMS_WORKFLOW_INIT_PARAMETER) SlimsFlowInitParam slimsFlowInitParam) {
+	public Map<String, Object> deleteSomeContent(@Header(SlimsGateKeeperConstants.SLIMS_WORKFLOW_INIT_PARAMETER) SlimsFlowInitParam slimsFlowInitParam) {
 
 		// User inputs from the step's <input> parameters will be stored in a Map in the SlimsFlowInitParam stored in a header in the route's Camel message
 			// The keys will be the <input> elements' <name> values. Values will be the user input into that element
@@ -100,7 +99,7 @@ public class DeleteSomeContent {
 
 		// Give the user an error popup if we could not find the requested number of contents to be deleted
 		if(foundContents.size() < numToDelete) {
-			throw new SlimsGateErrorException(String.format("User requested deletion of %s contents, but only found %s %s of configured type %s.",
+			throw new SlimsGateErrorException(String.format("User requested deletion of %d contents, but only found %d %s of configured type %s.",
 					numToDelete,
 					foundContents.size(),
 					foundContents.size() == 1 ? "content" : "contents",
@@ -124,7 +123,7 @@ public class DeleteSomeContent {
 				.map(content -> StringUtil.getAsString(content.get(ContentMeta.BAR_CODE)))
 				.collect(Collectors.toSet());
 		Map<String, Object> returnMap = new HashMap<>();
-		StringBuilder feedbackHtml = new StringBuilder(String.format("<p>Deleted the following %s %s with content type %s: <ul>",
+		StringBuilder feedbackHtml = new StringBuilder(String.format("<p>Deleted the following %d %s with content type %s: <ul>",
 				foundContentsBarcodes.size(),
 				foundContents.size() == 1 ? "content" : "contents",
 				basicCrudActionsConfiguration.getContentTypeDisplayValue()));
