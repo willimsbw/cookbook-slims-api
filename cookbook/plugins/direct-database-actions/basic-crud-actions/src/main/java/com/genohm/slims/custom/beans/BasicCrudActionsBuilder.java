@@ -25,7 +25,7 @@ public class BasicCrudActionsBuilder extends RouteBuilder {
 
 
 	@Override
-	public void configure() throws Exception {
+	public void configure() {
 		// This route will execute the @Handler-annotated method in the CreateAContent class
 		from("direct:create-a-content")
 				.bean(createAContent)
