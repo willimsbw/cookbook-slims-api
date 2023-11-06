@@ -74,6 +74,8 @@ public class DeleteSomeContent {
 			// SLIMS' API contains some useful helper classes for datatype conversion. The most commonly-used methods will be in StringUtil
 		Integer numToDelete = StringUtil.getAsInteger(userInputs.get(NUMBER_TO_DELETE_KEY));
 
+		// When fetching an Optional<>, we can use Optionals.getOrThrow() to check if the Optional<> is empty and, if so, throw an error. Otherwise, returns Optional.get()
+			// Optionals is a SLIMS-api class, but there are similar methods in standard java
 		ContentType configuredContentType = Optionals.getOrThrow(
 				contentTypeQueries.findByName(basicCrudActionsConfiguration.getContentTypeDisplayValue()),
 				new SlimsGateErrorException(String.format("Could not find a Content Type with name %s", basicCrudActionsConfiguration.getContentTypeDisplayValue())));
