@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.camel.Handler;
-import org.apache.camel.Header;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,8 +28,6 @@ import com.genohm.slims.server.repository.queriers.ContentRecordQueries;
 import com.genohm.slims.server.repository.queriers.ContentTypeQueries;
 import com.genohm.slims.server.repository.queriers.ContentTypeRecordQueries;
 import com.genohm.slimsgate.camel.gatekeeper.SlimsGateErrorException;
-import com.genohm.slimsgate.camel.gatekeeper.SlimsGateKeeperConstants;
-import com.genohm.slimsgate.camel.gatekeeper.SlimsProxy;
 
 @Component
 public class FetchSomeContent {
