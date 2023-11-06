@@ -31,7 +31,6 @@ import com.genohm.slims.server.repository.queriers.ContentQueries;
 import com.genohm.slims.server.repository.queriers.ContentTypeQueries;
 import com.genohm.slimsgate.camel.gatekeeper.SlimsGateErrorException;
 import com.genohm.slimsgate.camel.gatekeeper.SlimsGateKeeperConstants;
-import com.genohm.slimsgate.camel.gatekeeper.SlimsProxy;
 import com.genohm.slimsgateclient.workflow.SlimsFlowInitParam;
 
 @Component
