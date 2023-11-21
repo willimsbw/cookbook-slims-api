@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.camel.Handler;
-import org.apache.camel.Header;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,8 +28,6 @@ import com.genohm.slims.server.repository.queriers.ContentRecordQueries;
 import com.genohm.slims.server.repository.queriers.ContentTypeQueries;
 import com.genohm.slims.server.repository.queriers.ContentTypeRecordQueries;
 import com.genohm.slimsgate.camel.gatekeeper.SlimsGateErrorException;
-import com.genohm.slimsgate.camel.gatekeeper.SlimsGateKeeperConstants;
-import com.genohm.slimsgate.camel.gatekeeper.SlimsProxy;
 
 @Component
 public class FetchSomeContent {
@@ -60,7 +57,7 @@ public class FetchSomeContent {
 	 */
 	@Transactional
 	@Handler
-	public Map<String, Object> createAContent(@Header(SlimsGateKeeperConstants.SLIMS_PROXY) SlimsProxy slimsProxy) {
+	public Map<String, Object> fetchSomeContent() {
 		List<String> foundContentsBarcodes = new ArrayList<>();
 
 		// If the configuration parameter fetchRecordAsMaps is true - we will use <someTable>RecordQueries instead of <someTable>Queries
@@ -69,7 +66,7 @@ public class FetchSomeContent {
 			// It is easier to work with the Custom classes, but if you need values from Custom Fields, the custom classes don't have getters for those fields - you have to fetch the records as Maps<>
 		if(basicCrudActionsConfiguration.getFetchRecordsAsMaps()) {
 			try {
-				// This criteria can be defined inline on the actual fetch as well
+				// These criteria can be defined inline on the actual fetch as well
 				SlimsCriterion contentTypeFetchCriteria = SlimsRestrictions.and(
 						SlimsRestrictions.equals(ContentTypeMeta.NAME, basicCrudActionsConfiguration.getContentTypeDisplayValue()),
 						SlimsRestrictions.equals(ContentTypeMeta.ACTIVE, true));
@@ -116,13 +113,13 @@ public class FetchSomeContent {
 		// Create a return map with an HTML message containing the contents' barcodes to display to the user in the Feedback step
 			// We store it in a key called "outputMessage" - to match the feedback step's configuration in slimsgate.xml
 		Map<String, Object> returnMap = new HashMap<>();
-		StringBuilder feedbackHtml = new StringBuilder(String.format("<p>Found %s contents with content type %s: <ul>", foundContentsBarcodes.size(), basicCrudActionsConfiguration.getContentTypeDisplayValue()));
+		StringBuilder feedbackHtml = new StringBuilder(String.format("<p>Found %d contents with content type %s: <ul>", foundContentsBarcodes.size(), basicCrudActionsConfiguration.getContentTypeDisplayValue()));
 		foundContentsBarcodes.forEach(barcode -> feedbackHtml.append(String.format("<li>%s</li>", barcode)));
 		feedbackHtml.append("</ul></p>");
 
 		returnMap.put(FEEDBACK_KEY, feedbackHtml.toString());
 
-		// Return our feedback map -- this map becomes the actual value stored in the <output> parameter of the Slimsgate.xml step that called this route
+		// Return our feedback map -- this map becomes the actual value stored in the <output> parameter of the slimsgate.xml step that called this route
 		return returnMap;
 	}
 	

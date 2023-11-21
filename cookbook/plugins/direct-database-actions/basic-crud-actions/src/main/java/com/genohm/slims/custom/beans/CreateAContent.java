@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.camel.Handler;
-import org.apache.camel.Header;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +18,6 @@ import com.genohm.slims.common.model.ContentMeta;
 import com.genohm.slims.common.util.DaoConstants;
 import com.genohm.slims.custom.BasicCrudActionsConfiguration;
 import com.genohm.slims.server.dao.common.Dao;
-import com.genohm.slimsgate.camel.gatekeeper.SlimsGateKeeperConstants;
-import com.genohm.slimsgate.camel.gatekeeper.SlimsProxy;
 
 @Component
 public class CreateAContent {
@@ -44,7 +41,7 @@ public class CreateAContent {
 	 */
 	@Transactional
 	@Handler
-	public void createAContent(@Header(SlimsGateKeeperConstants.SLIMS_PROXY) SlimsProxy slimsProxy) {
+	public void createAContent() {
 		// Create an empty map. We will add keys to the map that are the names of SLIMS fields
 		Map<String, Object> contentToCreate = new HashMap<>();
 
@@ -59,8 +56,8 @@ public class CreateAContent {
 		// Use DaoConstants to get the name of the Database Table for a given type of record
 		Map<String, Object> convertedContent = convertRecordService.convertToInternalFormat(contentToCreate, DaoConstants.CONTENT);
 
-		// Create the content in SLIMS
-		contentDao.add(convertedContent);
+		// Create the content in SLIMS, this method returns a Map<String, Object> of the created record (content)
+		Map<String, Object> contentCreated = contentDao.add(convertedContent);
 	}
 	
 }

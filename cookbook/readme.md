@@ -1,3 +1,19 @@
+# DISCLAIMER !
+**Examples provided in this cookbook are still _under construction_, so if you see some sections/folders that are empty or incomplete it is because we are still working on it.
+You can find here the list of what is [Completed](#Completed), [In progress](#In progress) or [Not started](#Not started).**
+
+## Completed
+* [direct-database-actions/basic-crud-actions](plugins/direct-database-actions/basic-crud-actions)
+
+## In progress
+* [direct-database-actions](plugins/direct-database-actions)
+
+## Not started
+* [common-camel-patterns](plugins/common-camel-patterns)
+* [notifications-and-emails](plugins/notifications-and-emails)
+* [slimsgate-xml-advanced-patterns](plugins/slimsgate-xml-advanced-patterns)
+* [ui-only-actions-as-code](plugins/ui-only-actions-as-code)
+
 # How to use this cookbook
 
 **This section assumes you have already followed the instructions in the [top-level readme](../README.md) to setup your gradle.properties
