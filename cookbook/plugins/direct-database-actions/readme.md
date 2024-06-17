@@ -20,6 +20,7 @@
 * [Fetch some content](basic-crud-actions/src/main/resources/slimsgate.xml#L26)
 * [Delete some content](basic-crud-actions/src/main/resources/slimsgate.xml#L69)
 * [Update some content](basic-crud-actions/src/main/resources/slimsgate.xml#L120)
+* Working with Unit and Quantity objects
 
 </details>
 
