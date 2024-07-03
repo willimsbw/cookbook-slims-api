@@ -1,0 +1,18 @@
+<!--
+  ~ Copyright 2021 Agilent Technologies Inc.
+  -->
+
+<slimsgate>
+	<slimsgate-flow>
+		<id>work-with-quantity</id>
+		<name>Work with quantity</name>
+		<usage>contentmanagement</usage>
+		<step>
+			<name>Work with quantity</name>
+			<hidden>true</hidden>
+			<process>
+				<route>work-with-quantity</route>
+			</process>
+		</step>
+	</slimsgate-flow>
+</slimsgate>
