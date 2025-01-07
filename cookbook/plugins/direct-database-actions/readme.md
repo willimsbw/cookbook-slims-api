@@ -20,7 +20,6 @@
 * [Fetch some content](basic-crud-actions/src/main/resources/slimsgate.xml#L26)
 * [Delete some content](basic-crud-actions/src/main/resources/slimsgate.xml#L69)
 * [Update some content](basic-crud-actions/src/main/resources/slimsgate.xml#L120)
-
 </details>
 
 <details>
@@ -57,6 +56,42 @@
 * Accessing checked-off records with *SLIMS_SELECT_SAMPLES*
   * [Slimsgate.xml configuration to require items be checked off](basic-crud-actions/src/main/resources/slimsgate.xml#L128)
   * [Accessing the pk's of checked-off items in your code](basic-crud-actions/src/main/java/com/genohm/slims/custom/beans/UpdateSomeContent.java#L60)
+</details>
+</details>
 
+<details>
+<summary>
+
+## [work-with-quantity](work-with-quantity)
+
+</summary>
+
+<details>
+
+<summary>
+
+#### Flows
+
+</summary>
+
+* [work with quantity](basic-crud-actions/src/main/resources/slimsgate.xml#L6)
+
+</details>
+<details>
+
+<summary>
+
+#### Slimsgate API Services demonstrated
+
+</summary>
+
+* Casting/Converting a Map\<String, Object\> quantity value to a Quantity Object [QuantityService](basic-crud-actions/src/main/java/com/genohm/slims/custom/beans/WorkWithQuantityBean.java#L48)
+* Create a Quantity Object with an amount and a unit [Quantity](basic-crud-actions/src/main/java/com/genohm/slims/custom/beans/WorkWithQuantityBean.java#L52)
+* Convert a Quantity from one Unit to another Unit
+  * [UnitService](basic-crud-actions/src/main/java/com/genohm/slims/custom/beans/WorkWithQuantityBean.java#L52)
+  * [UnitService](basic-crud-actions/src/main/java/com/genohm/slims/custom/beans/WorkWithQuantityBean.java#L64)
+* Perform a comparison between two Quantities [Quantity.compareTo](basic-crud-actions/src/main/java/com/genohm/slims/custom/beans/WorkWithQuantityBean.java#L54)
+* Subtract one Quantity from another Quantity [Quantity.substract](basic-crud-actions/src/main/java/com/genohm/slims/custom/beans/WorkWithQuantityBean.java#L61)
+  * **Please check out the Quantity class to see other (similar) available methods**
 </details>
 </details>
